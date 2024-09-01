@@ -1,0 +1,10 @@
+routes:
+    '/index':
+        method: GET
+        callable: App\Controller\IndexAction
+    '/news':
+        method: GET
+        callable: App\Controller\NewsCollectionAction
+    '/news/:id':
+        method: GET
+        callable: App\Controller\NewsItemAction
