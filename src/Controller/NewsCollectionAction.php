@@ -2,10 +2,15 @@
 
 namespace App\Controller;
 
+use App\Repository\NewsRepository;
+
 class NewsCollectionAction
 {
     public function __invoke()
     {
-        echo "Hello World! I have news for ya all!";
+        $repository = new NewsRepository();
+        $newsCollection = $repository->findAll();
+
+        var_dump($newsCollection);
     }
 }
