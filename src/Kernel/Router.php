@@ -2,6 +2,7 @@
 
 namespace App\Kernel;
 
+use App\Kernel\Router\Exception\RouteNotFoundException;
 use App\Kernel\Router\Route;
 
 /**
@@ -25,6 +26,9 @@ class Router
         $this->routes[] = new Route($method, $path, $callback);
     }
 
+    /**
+     * @throws RouteNotFoundException
+     */
     public function dispatch(string $method, string $uri, string $scriptNamePath): mixed
     {
         $scriptName = $scriptNamePath;
@@ -45,6 +49,6 @@ class Router
             }
         }
 
-        return null;
+        throw new RouteNotFoundException('Route not found');
     }
 }
