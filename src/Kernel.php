@@ -2,9 +2,8 @@
 
 namespace App;
 
-use App\Controller\IndexAction;
-use App\Controller\NewsCollectionAction;
-use App\Controller\NewsItemAction;
+use App\Exception\HttpExceptionInterface;
+use App\Http\Response;
 use App\Kernel\Router;
 use APP\Kernel\Router\Exception\NoAvailableRouteException;
 use Symfony\Component\Yaml\Yaml;
@@ -35,7 +34,6 @@ class Kernel
     /**
      * @throws NoAvailableRouteException
      * @throws Router\Exception\CallbackIsNotCallableException
-     * @throws Router\Exception\RouteNotFoundException
      */
     private static function launchRouting(): void
     {
@@ -48,12 +46,7 @@ class Kernel
             throw new NoAvailableRouteException("No routes has been defined");
         }
 
-        foreach ($routes as $uri => $routeConfiguration) {
-            $callable = class_exists($routeConfiguration['callable']) ? new $routeConfiguration['callable']() : $routeConfiguration['callable'];
-            self::$router->addRoute($routeConfiguration['method'], $uri, $callable);
-        }
-
-        self::$router->dispatch($_SERVER['REQUEST_METHOD'], $_SERVER['REQUEST_URI'], $_SERVER['SCRIPT_NAME']);
+        self::$router->loadFromConfigData($routes);
     }
 
     private static function loadConfig(string $configFile): array
