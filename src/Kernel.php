@@ -22,6 +22,11 @@ class Kernel
 
     private static Router $router;
 
+    /**
+     * @throws NoAvailableRouteException
+     * @throws Router\Exception\CallbackIsNotCallableException
+     * @throws Router\Exception\RouteNotFoundException
+     */
     public static function run(): void
     {
         self::launchRouting();
@@ -30,6 +35,7 @@ class Kernel
     /**
      * @throws NoAvailableRouteException
      * @throws Router\Exception\CallbackIsNotCallableException
+     * @throws Router\Exception\RouteNotFoundException
      */
     private static function launchRouting(): void
     {
@@ -39,7 +45,7 @@ class Kernel
         $routes = $configuredRoutes['routes'] ?? null;
 
         if (empty($routes)) {
-            throw new NoAvailableRouteException("No routes found");
+            throw new NoAvailableRouteException("No routes has been defined");
         }
 
         foreach ($routes as $uri => $routeConfiguration) {
