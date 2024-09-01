@@ -4,6 +4,7 @@ namespace App\Kernel;
 
 use App\Kernel\Router\Exception\RouteNotFoundException;
 use App\Kernel\Router\Route;
+use App\Kernel\Router\RouteFactory;
 
 /**
  * Class Router
@@ -20,10 +21,24 @@ class Router
     /**
      * @throws Router\Exception\CallbackIsNotCallableException
      */
-    public function addRoute(string $method, string $path, string|callable $callback): void
+    public function addRoute(Route $route): void
     {
         //TODO handle unique route
-        $this->routes[] = new Route($method, $path, $callback);
+        $this->routes[] = $route;
+    }
+
+    /**
+     * @throws Router\Exception\CallbackIsNotCallableException
+     */
+    public function loadFromConfigData(array $definedRoutes): void
+    {
+        foreach ($definedRoutes as $uri => $routeConfiguration) {
+            $this->addRoute(RouteFactory::createRoute(
+                $routeConfiguration['method'],
+                $uri,
+                $routeConfiguration['callable']
+            ));
+        }
     }
 
     /**
