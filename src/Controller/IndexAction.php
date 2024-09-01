@@ -8,10 +8,10 @@ namespace App\Controller;
  * @package App\Controller
  * @author Jérémy GUERIBA
  */
-class IndexAction
+class IndexAction extends AbstractController
 {
     public function __invoke()
     {
-        echo 'Hello World!';
+        return $this->view->render('index.html.php');
     }
 }
