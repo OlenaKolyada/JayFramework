@@ -2,6 +2,13 @@
 
 namespace App\Kernel\Router\Exception;
 
-class NoAvailableRouteException extends \Exception
+use App\Exception\HttpExceptionInterface;
+use App\Http\Response;
+
+class NoAvailableRouteException extends \Exception implements HttpExceptionInterface
 {
+    public function getStatusCode(): int
+    {
+        return Response::HTTP_SERVER_ERROR;
+    }
 }
