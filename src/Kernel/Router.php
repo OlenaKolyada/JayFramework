@@ -14,7 +14,7 @@ class Router
 {
     private const string DEFAULT_BASE_FILE_PATH = '/index.php';
 
-    private $routes = [];
+    private array $routes = [];
 
     /**
      * @throws Router\Exception\CallbackIsNotCallableException
@@ -40,7 +40,7 @@ class Router
             $regexp = "#^" . $path . "$#";
 
             if ($method === $route->getMethod() && preg_match($regexp, $requestUri, $matches)) {
-                array_shift($matches); // Retirer la première entrée (l'URL entière)
+                array_shift($matches); // Remove first unusable match
                 return call_user_func_array($route->getCallable(), $matches);
             }
         }
