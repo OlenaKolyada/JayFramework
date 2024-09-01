@@ -1,5 +1,5 @@
 routes:
-    '/index':
+    '/':
         method: GET
         callable: App\Controller\IndexAction
     '/news':
