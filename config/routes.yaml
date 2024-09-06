@@ -1,10 +1,11 @@
+# uri: '/', '/news' и тп
 routes:
     '/':
         method: GET
-        callable: App\Controller\IndexAction
+        action: App\Controller\IndexAction
     '/news':
         method: GET
-        callable: App\Controller\NewsCollectionAction
+        action: App\Controller\NewsCollectionAction
     '/news/:id':
         method: GET
-        callable: App\Controller\NewsItemAction
+        action: App\Controller\NewsItemAction

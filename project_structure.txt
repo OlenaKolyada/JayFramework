@@ -1,0 +1,134 @@
+Folder PATH listing for volume ??????
+Volume serial number is FE73-C3EA
+C:.
+|   .gitignore
+|   composer.json
+|   composer.lock
+|   project_structure.txt
+|   
++---.idea
+|       .gitignore
+|       JayFramework.iml
+|       modules.xml
+|       php.xml
+|       vcs.xml
+|       workspace.xml
+|       
++---config
+|       routes.yaml
+|       
++---public
+|       .htaccess
+|       index.php
+|       
++---src
+|   |   Kernel.php
+|   |   View.php
+|   |   
+|   +---Controller
+|   |       AbstractController.php
+|   |       IndexAction.php
+|   |       NewsCollectionAction.php
+|   |       NewsItemAction.php
+|   |       
+|   +---Exception
+|   |       HttpExceptionInterface.php
+|   |       
+|   +---Http
+|   |       Response.php
+|   |       
+|   +---Kernel
+|   |   |   Router.php
+|   |   |   
+|   |   \---Router
+|   |       |   Route.php
+|   |       |   RouteFactory.php
+|   |       |   RouteInterface.php
+|   |       |   
+|   |       \---Exception
+|   |               CallbackIsNotCallableException.php
+|   |               NoAvailableRouteException.php
+|   |               RouteNotFoundException.php
+|   |               
+|   +---Model
+|   |       News.php
+|   |       
+|   \---Repository
+|       |   AbstractRepository.php
+|       |   NewsRepository.php
+|       |   
+|       \---Exception
+|               IdIsStringException.php
+|               ItemNotFoundException.php
+|               
++---templates
+|       error.html.php
+|       index.html.php
+|       news-list.html.php
+|       news.html.php
+|       
+\---vendor
+    |   autoload.php
+    |   
+    +---bin
+    |       yaml-lint
+    |       yaml-lint.bat
+    |       
+    +---composer
+    |       autoload_classmap.php
+    |       autoload_files.php
+    |       autoload_namespaces.php
+    |       autoload_psr4.php
+    |       autoload_real.php
+    |       autoload_static.php
+    |       ClassLoader.php
+    |       installed.json
+    |       installed.php
+    |       InstalledVersions.php
+    |       LICENSE
+    |       platform_check.php
+    |       
+    \---symfony
+        +---deprecation-contracts
+        |       CHANGELOG.md
+        |       composer.json
+        |       function.php
+        |       LICENSE
+        |       README.md
+        |       
+        +---polyfill-ctype
+        |       bootstrap.php
+        |       bootstrap80.php
+        |       composer.json
+        |       Ctype.php
+        |       LICENSE
+        |       README.md
+        |       
+        \---yaml
+            |   CHANGELOG.md
+            |   composer.json
+            |   Dumper.php
+            |   Escaper.php
+            |   Inline.php
+            |   LICENSE
+            |   Parser.php
+            |   README.md
+            |   Unescaper.php
+            |   Yaml.php
+            |   
+            +---Command
+            |       LintCommand.php
+            |       
+            +---Exception
+            |       DumpException.php
+            |       ExceptionInterface.php
+            |       ParseException.php
+            |       RuntimeException.php
+            |       
+            +---Resources
+            |   \---bin
+            |           yaml-lint
+            |           
+            \---Tag
+                    TaggedValue.php
+                    

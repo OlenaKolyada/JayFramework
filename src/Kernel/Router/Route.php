@@ -2,7 +2,7 @@
 
 namespace App\Kernel\Router;
 
-use App\Kernel\Router\Exception\CallbackIsNotCallableException;
+use App\Kernel\Router\Exception\ActionIsNotCallableException;
 
 /**
  * Class Route
@@ -13,16 +13,16 @@ use App\Kernel\Router\Exception\CallbackIsNotCallableException;
 readonly class Route implements RouteInterface
 {
     /**
-     * @throws CallbackIsNotCallableException
+     * @throws ActionIsNotCallableException
      */
     public function __construct(
         private string $method,
-        private string $path,
-        private mixed $callback
+        private string $uri,
+        private mixed $action
     )
     {
-        if (!is_callable($this->callback)) {
-            throw new CallbackIsNotCallableException("callback property is not callable");
+        if (!is_callable($this->action)) {
+            throw new ActionIsNotCallableException("action is not callable");
         }
     }
 
@@ -31,13 +31,13 @@ readonly class Route implements RouteInterface
         return $this->method;
     }
 
-    public function getPath(): string
+    public function getUri(): string
     {
-        return $this->path;
+        return $this->uri;
     }
 
-    public function getCallable(): callable
+    public function getAction(): callable
     {
-        return $this->callback;
+        return $this->action;
     }
 }

@@ -3,6 +3,7 @@
 namespace App\Repository;
 
 use App\Model\News;
+use App\Repository\Exception\IdIsStringException;
 use App\Repository\Exception\ItemNotFoundException;
 
 class NewsRepository extends AbstractRepository
@@ -40,8 +41,14 @@ class NewsRepository extends AbstractRepository
         return $result;
     }
 
+    /**
+     * @throws ItemNotFoundException
+     */
     public function findOneById(int $id): News
     {
+//        if (is_string($id)) {
+//            throw new IdIsStringException("Id is a string");
+//        }
         $result = $this->data[$id] ?? null;
 
         if ($result === null) {

@@ -3,6 +3,7 @@
 namespace App\Kernel\Router;
 
 use App\Controller\AbstractController;
+use App\Kernel\Router\Exception\ActionIsNotCallableException;
 use App\View;
 
 /**
@@ -14,20 +15,21 @@ use App\View;
 class RouteFactory
 {
     /**
-     * @throws Exception\CallbackIsNotCallableException
+     * Фабрика для создания маршрутор
+     * Создает объект Route с заданными параметрами
+     * @throws ActionIsNotCallableException
      */
-    public static function createRoute(string $method, string $path, string $callback): Route
+    public static function createRoute(string $method, string $uri, string $action): Route
     {
-        if (class_exists($callback)) {
-            if (is_subclass_of($callback, AbstractController::class)) {
-                $callable = new $callback(new View());
-            } else {
-                $callable = new $callback();
-            }
+        if (class_exists($action) && is_subclass_of($action, AbstractController::class)) {
+                $view = new View();
+                $actionInstance = new $action($view);
+
         } else {
-            $callable = $callback;
+                $actionInstance = new $action();
         }
 
-        return new Route($method, $path, $callable);
+
+        return new Route($method, $uri, $actionInstance);
     }
 }

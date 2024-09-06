@@ -2,11 +2,15 @@
 
 namespace App\Controller;
 
+use App\Repository\Exception\ItemNotFoundException;
 use App\Repository\NewsRepository;
 
 class NewsItemAction extends AbstractController
 {
-    public function __invoke($id)
+    /**
+     * @throws ItemNotFoundException
+     */
+    public function __invoke($id): \App\Http\Response
     {
         $repository = new NewsRepository();
         $news = $repository->findOneById($id);

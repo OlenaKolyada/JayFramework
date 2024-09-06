@@ -11,6 +11,6 @@ namespace App\Kernel\Router;
 interface RouteInterface
 {
     public function getMethod(): string;
-    public function getPath(): string;
-    public function getCallable(): callable;
+    public function getUri(): string;
+    public function getAction(): callable;
 }

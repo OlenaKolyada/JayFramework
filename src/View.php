@@ -3,6 +3,7 @@
 namespace App;
 
 use App\Http\Response;
+use App\Kernel\Kernel;
 
 /**
  * Class View
@@ -12,11 +13,8 @@ use App\Http\Response;
  */
 class View
 {
-    public const string TEMPLATE_BASE_PATH = Kernel::APP_ROOT_DIR
-        . DIRECTORY_SEPARATOR
-        . 'templates'
-        . DIRECTORY_SEPARATOR;
-
+    // консанта для базовой папки шаблонов -
+    public const string TEMPLATE_BASE_PATH = Kernel::APP_ROOT_DIR . DIRECTORY_SEPARATOR . 'templates' . DIRECTORY_SEPARATOR;
     public function render(
         string $templateName,
         array $params = [],

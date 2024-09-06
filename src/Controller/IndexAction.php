@@ -10,7 +10,7 @@ namespace App\Controller;
  */
 class IndexAction extends AbstractController
 {
-    public function __invoke()
+    public function __invoke(): \App\Http\Response
     {
         return $this->view->render('index.html.php');
     }
