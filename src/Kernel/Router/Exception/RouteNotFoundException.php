@@ -8,6 +8,8 @@ use App\Http\Response;
 /**
  * Class RouteNotFoundException
  *
+ * Thrown when any route match the request uri
+ *
  * @package App\Kernel\Router\Exception
  * @author Jérémy GUERIBA
  */

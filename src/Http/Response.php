@@ -13,8 +13,11 @@ class Response
     public const string CONTENT_TYPE_JSON = 'application/json';
 
     public function __construct(
+        /** Response content (the HTML that we will send for example) */
         private string $content,
+        /** Response status code */
         private int $statusCode = self::HTTP_OK,
+        /** The type of data the client will receive. It's a mime type */
         private string $contentType = self::CONTENT_TYPE_HTML
     )
     {
