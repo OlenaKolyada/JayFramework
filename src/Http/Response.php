@@ -52,4 +52,9 @@ class Response
     {
         $this->contentType = $contentType;
     }
+
+    public function __toString(): string
+    {
+        return $this->content;
+    }
 }

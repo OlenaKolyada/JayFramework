@@ -82,7 +82,7 @@ class Kernel
     private static function dispatch(): void
     {
         // Router handle the request uri, find the right action to execute and return the content produced by it
-        $result = self::$router->dispatch(
+        $response = self::$router->dispatch(
             $_SERVER['REQUEST_METHOD'],
             $_SERVER['REQUEST_URI'],
             $_SERVER['SCRIPT_NAME']
@@ -90,19 +90,15 @@ class Kernel
         //Now everything is handled, we just need to send the response
         ob_end_clean();
 
-        if ($result instanceof Response) {
+        if ($response instanceof Response) {
             // We define content type. It tells to client if he is receiving html, json or a file to download for example
-            header('Content-Type: ' . $result->getContentType());
+            header('Content-Type: ' . $response->getContentType());
             // Here we define the response status.
-            http_response_code($result->getStatusCode());
-            // Now we print the generated content in the response, this is the content that client will receive
-            echo $result->getContent();
-        } else if (is_string($result)) {
-            echo $result;
-        } else {
-            // In case the generated content is not an expected type, we throw an exception. This part can be improved.
-            throw new \Exception('Something went wrong');
+            http_response_code($response->getStatusCode());
         }
+
+        // If $response is an instance of Response, here the __toString method is called automatically
+        echo $response;
     }
 
     private static function displayError(int $statusCode, \Exception $e): void
