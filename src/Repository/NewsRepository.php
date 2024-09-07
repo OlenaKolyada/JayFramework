@@ -9,6 +9,10 @@ use App\Repository\Exception\ItemNotFoundException;
 class NewsRepository extends AbstractRepository
 {
     //here is data we have, can be fetch from database, so consider it as an example
+
+    public function __construct() {
+
+    }
     private array $data = [
         10 => [
             'id' => 10,
@@ -44,7 +48,7 @@ class NewsRepository extends AbstractRepository
     /**
      * @throws ItemNotFoundException
      */
-    public function findOneById(int $id): News
+    public function findById(int $id): News
     {
 //        if (is_string($id)) {
 //            throw new IdIsStringException("Id is a string");

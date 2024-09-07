@@ -2,6 +2,8 @@
 
 namespace App\Controller;
 
+use App\Http\Response;
+
 /**
  * Class IndexAction
  *
@@ -10,8 +12,8 @@ namespace App\Controller;
  */
 class IndexAction extends AbstractController
 {
-    public function __invoke(): \App\Http\Response
+    public function __invoke(): Response
     {
-        return $this->view->render('index.html.php');
+        return $this->view->render('index.html.php'); // Возвращается объект Response
     }
 }

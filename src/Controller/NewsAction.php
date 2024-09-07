@@ -3,10 +3,11 @@
 namespace App\Controller;
 
 use App\Repository\NewsRepository;
+use App\Http\Response;
 
-class NewsCollectionAction extends AbstractController
+class NewsAction extends AbstractController
 {
-    public function __invoke(): \App\Http\Response
+    public function __invoke(): Response
     {
         $repository = new NewsRepository();
         $newsCollection = $repository->findAll();

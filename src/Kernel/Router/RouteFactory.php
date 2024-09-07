@@ -19,17 +19,17 @@ class RouteFactory
      * Создает объект Route с заданными параметрами
      * @throws ActionIsNotCallableException
      */
-    public static function createRoute(string $method, string $uri, string $action): Route
+    public static function createRoute(string $method, string $uri, string $controller): Route
     {
-        if (class_exists($action) && is_subclass_of($action, AbstractController::class)) {
+        if (class_exists($controller) && is_subclass_of($controller, AbstractController::class)) {
                 $view = new View();
-                $actionInstance = new $action($view);
+                $action = new $controller($view);
 
         } else {
-                $actionInstance = new $action();
+                $action = new $$controller();
         }
 
 
-        return new Route($method, $uri, $actionInstance);
+        return new Route($method, $uri, $action);
     }
 }

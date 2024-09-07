@@ -2,6 +2,7 @@
 
 namespace App\Kernel\Router;
 
+use App\Http\Response;
 use App\Kernel\Router\Exception\ActionIsNotCallableException;
 use App\Kernel\Router\Exception\RouteNotFoundException;
 
@@ -32,10 +33,11 @@ class Router
         foreach ($routes as $uri => $routeParams) {
             // Извлекаем метод и вызываемую функцию из конфигурации маршрута
             $method = $routeParams['method'];
-            $action = $routeParams['action'];
+            $controller = $routeParams['controller'];
 
             // Создаём объект маршрута Route с помощью фабрики
-            $route = RouteFactory::createRoute($method, $uri, $action);
+            $route = RouteFactory::createRoute($method, $uri, $controller);
+
             // Добавляем объект Route в массив маршрутов
             $this->routes[] = $route;
         }
@@ -81,7 +83,8 @@ class Router
                 $action = $route->getAction();
 
                 // Вызываем выполнение соответствующего контроллера Action
-                return call_user_func_array($action, $matches);
+                $response = call_user_func_array($action, $matches); // Возвращается объект Response
+                return $response;
             }
         }
 

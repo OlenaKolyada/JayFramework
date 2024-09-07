@@ -26,16 +26,11 @@ class Kernel
     // Статическая переменная для роутера (маршрутизатора)
     private static Router $router;
 
-
-
     public static function run(): void
     {
         ob_start(); // Начало буферизации вывода
 
         try {
-            // Инициализация роутера
-            self::$router = new Router();
-
             // Загрузка маршрутов. Парсинг YAML-файла
             $routesFromYaml = Yaml::parseFile(self::APP_CONFIG_DIR . 'routes' . '.yaml');
 
@@ -45,6 +40,9 @@ class Kernel
             if (empty($routes)) {
                 throw new NoAvailableRouteException("No routes has been defined");
             }
+
+            // Инициализация роутера
+            self::$router = new Router();
 
             // Загрузка маршрутов в маршрутизатор, чтобы создать массив маршрутов
             self::$router->loadRoutes($routes);

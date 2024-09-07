@@ -2,10 +2,10 @@
 routes:
     '/':
         method: GET
-        action: App\Controller\IndexAction
+        controller: App\Controller\IndexAction
     '/news':
         method: GET
-        action: App\Controller\NewsCollectionAction
+        controller: App\Controller\NewsAction
     '/news/:id':
         method: GET
-        action: App\Controller\NewsItemAction
+        controller: App\Controller\NewsItemAction
